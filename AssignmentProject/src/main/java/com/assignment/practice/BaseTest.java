@@ -17,6 +17,7 @@ public class BaseTest {
 public static WebDriver driver;
 public static WebDriverWait wait;
 public static String mainID;
+
 public static String getDataFromExcel(String sheet,int row,int cell) throws EncryptedDocumentException, IOException {
 	FileInputStream fis=new FileInputStream("./MobileData/testData.xlsx");
 	Workbook book = WorkbookFactory.create(fis);

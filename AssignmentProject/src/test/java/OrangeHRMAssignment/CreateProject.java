@@ -42,6 +42,7 @@ public static void main(String[] args) throws IOException, Exception {
 	driver.findElement(By.id("dialogSave")).click();
 	driver.findElement(By.id("addProject_projectName")).sendKeys(getDataFromExcel("Sheet4", 5, 2));
 	driver.findElement(By.id("addProject_description")).sendKeys(getDataFromExcel("Sheet4", 5, 3));
+	Thread.sleep(1000);
 	driver.findElement(By.id("btnSave")).click();
 	
 	String actualSuccessMsg = driver.findElement(By.id("messagebar")).getText();

@@ -16,6 +16,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.assignment.practice.BaseTest;
@@ -44,10 +45,13 @@ public class ValidateAddToCart extends BaseTest {
 		/* Mobile and Tablets drop down */
 		WebElement ddMobilesAndTablets = driver.findElement(By.xpath("//div[text()='MOBILES & TABLETS']"));
 		Actions act = new Actions(driver);
+		WebDriverWait wait1=new WebDriverWait(driver, 30);
 		/* move mouse pointer to mobile and tablets drop down */
 		act.moveToElement(ddMobilesAndTablets).perform();
 		/* click on memory card option in drop down */
-		driver.findElement(By.xpath("(//a[text()='Memory Cards'])[1]")).click();
+		WebElement memoryCards = driver.findElement(By.xpath("(//a[text()='Memory Cards'])[1]"));
+		waitForElement(memoryCards, "Memory Cards", 40);
+		memoryCards.click();
 		/* click on 1st item */
 		driver.findElement(By.xpath("//p[text()='" + getDataFromExcel("EcommData", 1, 1) + "']")).click();
 		/* navigate to child tab */
@@ -60,14 +64,18 @@ public class ValidateAddToCart extends BaseTest {
 		pinCode.clear();
 		/* type pin in pin code text box */
 		pinCode.sendKeys(getDataFromExcel("EcommData", 1, 3));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Standard Delivery By:']")));
 		/* identify Add to cart button */
 		WebElement btnAddToCart1 = driver.findElement(By.xpath("//button[@id='add_to_cart_main_btn']/.."));
 		/* wait for add to card button to be visible */
 		waitForElement(btnAddToCart1, "Add To Cart Button", 20);
 		/* click on add to cart button */
 		btnAddToCart1.click();
-
-		Thread.sleep(4000);
+		//wait1.until(ExpectedConditions.titleContains("Memory Card"));
+		wait1.until(ExpectedConditions.titleContains("Reliance Digital"));
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[text()='My Cart']/span")));
+		//Thread.sleep(10000);
+		//System.out.println(driver.getTitle());
 		/* close the child browser tab */
 		driver.close();
 		/* switch to main window tab */
@@ -80,15 +88,22 @@ public class ValidateAddToCart extends BaseTest {
 		item2.click();
 		/* switch to child browser tab */
 		switchWindow();
-
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Standard Delivery By:']")));
 		/* identify Add to cart button */
 		WebElement btnAddToCart2 = driver.findElement(By.xpath("//button[@id='add_to_cart_main_btn']/.."));
 		/* wait for add to card button to be visible */
 		waitForElement(btnAddToCart2, "Add To Cart Button", 20);
 		/* click on add to cart button */
 		btnAddToCart2.click();
+		wait1.until(ExpectedConditions.titleContains("Reliance Digital"));
+	//	wait1.until(ExpectedConditions.titleContains("Memory Card"));
+	//	Thread.sleep(10000);
+	//	System.out.println(driver.getTitle());
 		/* fetch number of items present in cart */
-		String actualNumberOfItems = driver.findElement(By.xpath("//h3[text()='My Cart']/span")).getText();
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[text()='My Cart']/span")));
+		WebElement numberOfItems = driver.findElement(By.xpath("//h3[text()='My Cart']/span"));
+		waitForElement(numberOfItems, "Number of Items", 40);
+		String actualNumberOfItems = numberOfItems.getText();
 		String expectedNumberOfItems = getDataFromExcel("EcommData", 1, 4);
 		try {
 			Assert.assertTrue(actualNumberOfItems.contains(expectedNumberOfItems));

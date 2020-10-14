@@ -41,14 +41,14 @@ public class ValidateWishList extends BaseTest {
 		driver.get("https://www.reliancedigital.in/");
 		/* maximize the browser */
 		driver.manage().window().maximize();
-		/* perform click on login tab */
+	/*	 perform click on login tab 
 		driver.findElement(By.xpath("//span[text()='Login']")).click();
-		/* type username in username text box */
+		 type username in username text box 
 		driver.findElement(By.id("email")).sendKeys(getDataFromExcel("EcommData", 5, 0));
-		/* type password in password text box */
+		 type password in password text box 
 		driver.findElement(By.id("pass")).sendKeys(getDataFromExcel("EcommData", 5, 1));
-		/* click on login button */
-		driver.findElement(By.xpath("//span[text()='Continue']")).click();
+		 click on login button 
+		driver.findElement(By.xpath("//span[text()='Continue']")).click();*/
 		/* Mobile and Tablets drop down */
 		WebElement ddMobilesAndTablets = driver.findElement(By.xpath("//div[text()='MOBILES & TABLETS']/.."));
 		waitForElement(ddMobilesAndTablets, "Mobile and tablets drop down", 40);
@@ -65,13 +65,18 @@ public class ValidateWishList extends BaseTest {
 		/* identify wishlist tab for given item */
 /*		WebElement tabWishList = driver.findElement(By.xpath("//p[text()='" + getDataFromExcel("EcommData", 5, 3)
 				+ "']/../../following-sibling::div/button[2]/span"));*/
-		 WebElement tabWishList =
-		driver.findElement(By.xpath("(//span[text()='Wishlist'])[1]"));
+		WebElement tabWishList = driver.findElement(By.xpath("(//span[text()='Wishlist'])[1]"));
 		/* wait for wish list tab to be visible */
 		waitForElement(tabWishList, "Wishlist tab", 50);
 		/* click on wish list tab */
 		tabWishList.click();
-
+		driver.findElement(By.xpath("//span[text()='Login']")).click();
+		/* type username in username text box */
+		driver.findElement(By.id("email")).sendKeys(getDataFromExcel("EcommData", 5, 0));
+		/* type password in password text box */
+		driver.findElement(By.id("pass")).sendKeys(getDataFromExcel("EcommData", 5, 1));
+		/* click on login button */
+		driver.findElement(By.xpath("//span[text()='Continue']")).click();
 		/* identify wishlist text box */
 		WebElement tbWishList = driver.findElement(By.id("wishlist-input"));
 		/* wait for wishlist text box to be visible */
