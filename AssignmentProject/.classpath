@@ -64,5 +64,6 @@
 	<classpathentry kind="lib" path="E:/Application setup/Com/jar files/all jar files poi selenium/poi-scratchpad-4.1.2.jar"/>
 	<classpathentry kind="lib" path="E:/Application setup/Com/jar files/all jar files poi selenium/SparseBitSet-1.2.jar"/>
 	<classpathentry kind="lib" path="E:/Application setup/Com/jar files/all jar files poi selenium/xmlbeans-3.1.0.jar"/>
+	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
