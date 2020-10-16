@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Assignment2 {
-	private static final String String = null;
+	private static String String = null;
 
 	public static void main(String[] args) throws InterruptedException {
 		/*launch browser*/
